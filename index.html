@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1586px;
+            height: 941px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/dipdomainmap_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:2
+        }).fitBounds([[23.527034740473123,94.51013782224348],[23.814974129434997,94.99586305346352]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_GoogleSatelliteHybrid_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 2,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_GoogleSatelliteHybrid_0;
+        map.addLayer(layer_GoogleSatelliteHybrid_0);
+        function pop_dipdomainmap_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['steepness'] !== null ? Autolinker.link(feature.properties['steepness'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['direction'] !== null ? Autolinker.link(feature.properties['direction'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dip-direc'] !== null ? Autolinker.link(feature.properties['dip-direc'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_dipdomainmap_1_0(feature) {
+            switch(String(feature.properties['dip-direc'])) {
+                case '0 - 15 degrees East':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(83,232,232,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                case '0 - 15 degrees South':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(135,236,80,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                case '0 - 15 degrees West':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(241,223,59,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                case '15 - 45 degrees East':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,141,231,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                case '15 - 45 degrees North':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(216,41,239,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                case '15 - 45 degrees South':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(3,189,0,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                case '15 - 45 degrees West':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,53,0,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                case '45 - 75 degrees East':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(18,33,205,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                case '45 - 75 degrees North':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(109,34,179,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                case 'variable (fold axis) mostly E, W & horizontal':
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,183,182,0.5019607843137255)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_dipdomainmap_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(133,238,188,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_dipdomainmap_1');
+        map.getPane('pane_dipdomainmap_1').style.zIndex = 401;
+        map.getPane('pane_dipdomainmap_1').style['mix-blend-mode'] = 'normal';
+        var layer_dipdomainmap_1 = new L.geoJson(json_dipdomainmap_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_dipdomainmap_1',
+            layerName: 'layer_dipdomainmap_1',
+            pane: 'pane_dipdomainmap_1',
+            onEachFeature: pop_dipdomainmap_1,
+            style: style_dipdomainmap_1_0,
+        });
+        bounds_group.addLayer(layer_dipdomainmap_1);
+        map.addLayer(layer_dipdomainmap_1);
+        setBounds();
+        </script>
+    </body>
+</html>
